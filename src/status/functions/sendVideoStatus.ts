@@ -39,9 +39,9 @@ export async function sendVideoStatus(
     fromMe: true,
     id: randomHex(16),
     participant:
-      typeof UserPrefs.getMaybeMeUser() === 'function'
-        ? UserPrefs.getMaybeMeUser()
-        : UserPrefs.getMaybeMePnUser(),
+      typeof UserPrefs.getMaybeMePnUser() === 'function'
+        ? UserPrefs.getMaybeMePnUser()
+        : UserPrefs.getMaybeMeUser(),
     remote: assertWid('status@broadcast'),
   });
 

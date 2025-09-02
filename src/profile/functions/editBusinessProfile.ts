@@ -228,9 +228,9 @@ export async function editBusinessProfile(params: BusinessProfileModel) {
 
   await editProfile(params);
   const profile = await BusinessProfileStore.fetchBizProfile(
-    typeof UserPrefs.getMaybeMeUser() === 'function'
-      ? UserPrefs.getMaybeMeUser()
-      : UserPrefs.getMaybeMePnUser()
+    typeof UserPrefs.getMaybeMePnUser() === 'function'
+      ? UserPrefs.getMaybeMePnUser()
+      : UserPrefs.getMaybeMeUser()
   );
   return profile;
 }

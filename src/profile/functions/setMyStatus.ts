@@ -32,9 +32,9 @@ export async function setMyStatus(statusText: string) {
   await wa_functions.setMyStatus(statusText);
 
   const myStatus = await StatusStore.find(
-    typeof UserPrefs.getMaybeMeUser() === 'function'
-      ? UserPrefs.getMaybeMeUser()
-      : UserPrefs.getMaybeMePnUser()
+    typeof UserPrefs.getMaybeMePnUser() === 'function'
+      ? UserPrefs.getMaybeMePnUser()
+      : UserPrefs.getMaybeMeUser()
   );
 
   if (myStatus) {

@@ -28,9 +28,9 @@ function applyPatch() {
 
     if (!config.syncAllStatus && wid.isStatusV3()) {
       const me =
-        typeof UserPrefs.getMaybeMeUser() === 'function'
-          ? UserPrefs.getMaybeMeUser()
-          : UserPrefs.getMaybeMePnUser();
+        typeof UserPrefs.getMaybeMePnUser() === 'function'
+          ? UserPrefs.getMaybeMePnUser()
+          : UserPrefs.getMaybeMeUser();
 
       if (msg.author && !me.equals(msg.author)) {
         return;

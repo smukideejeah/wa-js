@@ -27,9 +27,9 @@ export async function generateMessageID(
   chat: string | ChatModel | Wid
 ): Promise<MsgKey> {
   const from =
-    typeof UserPrefs.getMaybeMeUser() === 'function'
-      ? UserPrefs.getMaybeMeUser()
-      : UserPrefs.getMaybeMePnUser();
+    typeof UserPrefs.getMaybeMePnUser() === 'function'
+      ? UserPrefs.getMaybeMePnUser()
+      : UserPrefs.getMaybeMeUser();
   let to: Wid;
 
   if (chat instanceof Wid) {

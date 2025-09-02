@@ -69,9 +69,9 @@ export async function offer(
 
   const callId = functions.randomHex(16).substr(0, 64);
   const me =
-    typeof UserPrefs.assertGetMe === 'function'
-      ? UserPrefs.assertGetMe()
-      : UserPrefs.getMePnUserOrThrow();
+    typeof UserPrefs.getMePnUserOrThrow === 'function'
+      ? UserPrefs.getMePnUserOrThrow()
+      : UserPrefs.assertGetMe();
 
   const content = [
     websocket.smax('audio', { enc: 'opus', rate: '16000' }, null),

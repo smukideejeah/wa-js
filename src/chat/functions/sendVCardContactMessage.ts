@@ -99,9 +99,9 @@ export async function sendVCardContactMessage(
     if (
       !name &&
       contactModel.id.equals(
-        typeof UserPrefs.getMaybeMeUser() === 'function'
-          ? UserPrefs.getMaybeMeUser()
-          : UserPrefs.getMaybeMePnUser()
+        typeof UserPrefs.getMaybeMePnUser() === 'function'
+          ? UserPrefs.getMaybeMePnUser()
+          : UserPrefs.getMaybeMeUser()
       )
     ) {
       name = contactModel.displayName;
