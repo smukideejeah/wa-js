@@ -28,7 +28,7 @@ function applyPatch() {
 
     if (!config.syncAllStatus && wid.isStatusV3()) {
       const me =
-        typeof UserPrefs.getMaybeMePnUser() === 'function'
+        typeof UserPrefs.getMaybeMePnUser === 'function'
           ? UserPrefs.getMaybeMePnUser()
           : UserPrefs.getMaybeMeUser();
 

@@ -29,7 +29,7 @@ import { functions, UserPrefs } from '../../whatsapp';
 
 export async function removeMyProfilePicture(): Promise<boolean> {
   const me =
-    typeof UserPrefs.getMaybeMePnUser() === 'function'
+    typeof UserPrefs.getMaybeMePnUser === 'function'
       ? UserPrefs.getMaybeMePnUser()
       : UserPrefs.getMaybeMeUser();
   const result = await functions.requestDeletePicture(me);

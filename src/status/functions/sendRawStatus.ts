@@ -46,7 +46,7 @@ export async function sendRawStatus(
     fromMe: true,
     id: randomHex(16),
     participant:
-      typeof UserPrefs.getMaybeMePnUser() === 'function'
+      typeof UserPrefs.getMaybeMePnUser === 'function'
         ? UserPrefs.getMaybeMePnUser()
         : UserPrefs.getMaybeMeUser(),
     remote: assertWid('status@broadcast'),
@@ -59,7 +59,7 @@ export async function sendRawStatus(
   };
 
   message.author =
-    typeof UserPrefs.getMaybeMePnUser() === 'function'
+    typeof UserPrefs.getMaybeMePnUser === 'function'
       ? UserPrefs.getMaybeMePnUser()
       : UserPrefs.getMaybeMeUser();
 

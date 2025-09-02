@@ -56,7 +56,7 @@ export async function setMyProfilePicture(content: string): Promise<{
   const pictureBase64 = await blobToBase64(pictureFile);
 
   const me =
-    typeof UserPrefs.getMaybeMePnUser() === 'function'
+    typeof UserPrefs.getMaybeMePnUser === 'function'
       ? UserPrefs.getMaybeMePnUser()
       : UserPrefs.getMaybeMeUser();
   return sendSetPicture(me, thumbBase64, pictureBase64);

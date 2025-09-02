@@ -99,7 +99,7 @@ export async function sendVCardContactMessage(
     if (
       !name &&
       contactModel.id.equals(
-        typeof UserPrefs.getMaybeMePnUser() === 'function'
+        typeof UserPrefs.getMaybeMePnUser === 'function'
           ? UserPrefs.getMaybeMePnUser()
           : UserPrefs.getMaybeMeUser()
       )

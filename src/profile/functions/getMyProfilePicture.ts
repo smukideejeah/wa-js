@@ -33,7 +33,7 @@ import {
 
 export async function getMyProfilePicture(): Promise<ProfilePicThumbModel> {
   const pic = await ProfilePicThumbStore.find(
-    typeof UserPrefs.getMaybeMePnUser() === 'function'
+    typeof UserPrefs.getMaybeMePnUser === 'function'
       ? UserPrefs.getMaybeMePnUser()
       : UserPrefs.getMaybeMeUser()
   );

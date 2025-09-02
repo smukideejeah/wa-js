@@ -21,7 +21,7 @@ export async function getMyStatus(): Promise<StatusV3Model> {
 
   if (!myStatus)
     myStatus = await StatusV3Store.find(
-      typeof UserPrefs.getMaybeMePnUser() === 'function'
+      typeof UserPrefs.getMaybeMePnUser === 'function'
         ? UserPrefs.getMaybeMePnUser()
         : UserPrefs.getMaybeMeUser()
     );

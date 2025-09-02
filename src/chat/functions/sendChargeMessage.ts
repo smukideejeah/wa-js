@@ -113,14 +113,14 @@ export async function sendChargeMessage(
   let thumbDefault = null;
 
   const catalog = CatalogStore.get(
-    typeof UserPrefs.getMaybeMePnUser() === 'function'
+    typeof UserPrefs.getMaybeMePnUser === 'function'
       ? UserPrefs.getMaybeMePnUser()
       : UserPrefs.getMaybeMeUser()
   );
   for (const product of items) {
     if (product.type == 'product') {
       const { data } = await queryProduct(
-        typeof UserPrefs.getMaybeMePnUser() === 'function'
+        typeof UserPrefs.getMaybeMePnUser === 'function'
           ? UserPrefs.getMaybeMePnUser()
           : UserPrefs.getMaybeMeUser(),
         product.id,

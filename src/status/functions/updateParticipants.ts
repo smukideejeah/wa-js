@@ -54,7 +54,7 @@ export async function updateParticipants(
       .filter(
         (c) =>
           !c.id.equals(
-            typeof UserPrefs.getMaybeMePnUser() === 'function'
+            typeof UserPrefs.getMaybeMePnUser === 'function'
               ? UserPrefs.getMaybeMePnUser()
               : UserPrefs.getMaybeMeUser()
           )
@@ -69,7 +69,7 @@ export async function updateParticipants(
     .filter(
       (c) =>
         !c.equals(
-          typeof UserPrefs.getMaybeMePnUser() === 'function'
+          typeof UserPrefs.getMaybeMePnUser === 'function'
             ? UserPrefs.getMaybeMePnUser()
             : UserPrefs.getMaybeMeUser()
         )
@@ -77,7 +77,7 @@ export async function updateParticipants(
 
   if (config.sendStatusToDevice) {
     wids.push(
-      typeof UserPrefs.getMaybeMePnUser() === 'function'
+      typeof UserPrefs.getMaybeMePnUser === 'function'
         ? UserPrefs.getMaybeMePnUser()
         : UserPrefs.getMaybeMeUser()
     );
