@@ -27,5 +27,9 @@ import { CatalogStore, UserPrefs } from '../../whatsapp';
  * @return Your current catalog
  */
 export async function getMyCatalog() {
-  return CatalogStore.get(UserPrefs.getMeUser());
+  return CatalogStore.get(
+    typeof UserPrefs.getMeUser() === 'function'
+      ? UserPrefs.getMeUser()
+      : UserPrefs.getMePnUserOrThrow()
+  );
 }

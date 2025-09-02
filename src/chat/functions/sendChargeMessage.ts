@@ -112,11 +112,17 @@ export async function sendChargeMessage(
   let subtotal = 0;
   let thumbDefault = null;
 
-  const catalog = CatalogStore.get(UserPrefs.getMaybeMeUser());
+  const catalog = CatalogStore.get(
+    typeof UserPrefs.getMaybeMeUser() === 'function'
+      ? UserPrefs.getMaybeMeUser()
+      : UserPrefs.getMaybeMePnUser()
+  );
   for (const product of items) {
     if (product.type == 'product') {
       const { data } = await queryProduct(
-        UserPrefs.getMaybeMeUser(),
+        typeof UserPrefs.getMaybeMeUser() === 'function'
+          ? UserPrefs.getMaybeMeUser()
+          : UserPrefs.getMaybeMePnUser(),
         product.id,
         100,
         100,
@@ -177,7 +183,12 @@ export async function sendChargeMessage(
     type: 'physical-goods',
     payment_configuration: 'merchant_categorization_code',
     currency: await currencyForCountryShortcode(
-      await getCountryShortcodeByPhone(UserPrefs.getMeUser().user)
+      await getCountryShortcodeByPhone(
+        (typeof UserPrefs.getMeUser() === 'function'
+          ? UserPrefs.getMeUser()
+          : UserPrefs.getMePnUserOrThrow()
+        ).user
+      )
     ),
     total_amount: {
       value: total_amount,

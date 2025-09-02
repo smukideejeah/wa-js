@@ -54,7 +54,7 @@ module.exports = (env, argv) => {
         __SUPPORTED_WHATSAPP_WEB__: `'${packageJSON.engines['whatsapp-web']}'`,
       }),
       new webpack.BannerPlugin({
-        banner: `/*! wppconnect-team/wa-js v${packageJSON.version} */\n`,
+        banner: `/*! wppconnect-team/wa-js v${packageJSON.version} - AsRa Labs Fork*/\n`,
         entryOnly: true,
         raw: true
       })

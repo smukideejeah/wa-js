@@ -49,7 +49,11 @@ function registerAckMessageEvent() {
 
     const remote = ackData.from;
     const fromMe =
-      !ackData.recipient || UserPrefs.getMeUser().equals(ackData.recipient);
+      !ackData.recipient ||
+      (typeof UserPrefs.getMeUser() === 'function'
+        ? UserPrefs.getMeUser()
+        : UserPrefs.getMePnUserOrThrow()
+      ).equals(ackData.recipient);
 
     // Ignore non my messages ACK events
     if (!fromMe) {

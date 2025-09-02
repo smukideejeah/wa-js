@@ -51,7 +51,14 @@ export async function updateParticipants(
     ids = ContactStore.getModelsArray()
       .filter((c) => c.isMyContact && !c.isContactBlocked)
       .filter((c) => c.notifyName && !c.isMe)
-      .filter((c) => !c.id.equals(UserPrefs.getMaybeMeUser()))
+      .filter(
+        (c) =>
+          !c.id.equals(
+            typeof UserPrefs.getMaybeMeUser() === 'function'
+              ? UserPrefs.getMaybeMeUser()
+              : UserPrefs.getMaybeMePnUser()
+          )
+      )
       .map((c) => c.id);
 
     type = 'contacts';
@@ -59,10 +66,21 @@ export async function updateParticipants(
 
   const wids = ids
     .map(assertWid)
-    .filter((c) => !c.equals(UserPrefs.getMaybeMeUser()));
+    .filter(
+      (c) =>
+        !c.equals(
+          typeof UserPrefs.getMaybeMeUser() === 'function'
+            ? UserPrefs.getMaybeMeUser()
+            : UserPrefs.getMaybeMePnUser()
+        )
+    );
 
   if (config.sendStatusToDevice) {
-    wids.push(UserPrefs.getMaybeMeUser());
+    wids.push(
+      typeof UserPrefs.getMaybeMeUser() === 'function'
+        ? UserPrefs.getMaybeMeUser()
+        : UserPrefs.getMaybeMePnUser()
+    );
   }
 
   const participants = wids.map(

@@ -20,7 +20,11 @@ export async function getMyStatus(): Promise<StatusV3Model> {
   let myStatus = StatusV3Store.getMyStatus();
 
   if (!myStatus)
-    myStatus = await StatusV3Store.find(UserPrefs.getMaybeMeUser());
+    myStatus = await StatusV3Store.find(
+      typeof UserPrefs.getMaybeMeUser() === 'function'
+        ? UserPrefs.getMaybeMeUser()
+        : UserPrefs.getMaybeMePnUser()
+    );
 
   return myStatus;
 }

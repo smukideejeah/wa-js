@@ -70,7 +70,10 @@ export async function createProduct(
 
   const Product = new ProductModel();
   Product.name = params.name.toString();
-  Product.catalogWid = UserPrefs.getMeUser();
+  Product.catalogWid =
+    typeof UserPrefs.getMeUser() === 'function'
+      ? UserPrefs.getMeUser()
+      : UserPrefs.getMePnUserOrThrow();
   Product.imageCdnUrl = url;
   Product.productImageCollection = new ProductImageModel({
     mediaUrl: url,

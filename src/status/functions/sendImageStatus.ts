@@ -38,7 +38,10 @@ export async function sendImageStatus(
   const messageId = new MsgKey({
     fromMe: true,
     id: randomHex(16),
-    participant: UserPrefs.getMaybeMeUser(),
+    participant:
+      typeof UserPrefs.getMaybeMeUser() === 'function'
+        ? UserPrefs.getMaybeMeUser()
+        : UserPrefs.getMaybeMePnUser(),
     remote: assertWid('status@broadcast'),
   });
 

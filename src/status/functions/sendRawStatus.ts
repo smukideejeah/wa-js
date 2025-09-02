@@ -45,7 +45,10 @@ export async function sendRawStatus(
   const messageId = new MsgKey({
     fromMe: true,
     id: randomHex(16),
-    participant: UserPrefs.getMaybeMeUser(),
+    participant:
+      typeof UserPrefs.getMaybeMeUser() === 'function'
+        ? UserPrefs.getMaybeMeUser()
+        : UserPrefs.getMaybeMePnUser(),
     remote: assertWid('status@broadcast'),
   });
 
@@ -55,7 +58,10 @@ export async function sendRawStatus(
     ...options,
   };
 
-  message.author = UserPrefs.getMaybeMeUser();
+  message.author =
+    typeof UserPrefs.getMaybeMeUser() === 'function'
+      ? UserPrefs.getMaybeMeUser()
+      : UserPrefs.getMaybeMePnUser();
 
   const result = await Chat.sendRawMessage('status@broadcast', message, {
     ...options,
